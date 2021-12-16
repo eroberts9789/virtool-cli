@@ -15,7 +15,9 @@ jobs:
         run:
           docker build -t virtool/cli:test --target=test .
   release:
-      if: ${{ github.event.name == 'push' }}
+      if: github.event_name == "push"
+      needs:
+        - test
       runs-on: ubuntu-20.04
       steps:
         - name: Checkout
